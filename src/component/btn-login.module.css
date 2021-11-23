@@ -8,17 +8,16 @@
     background-color: #6253BD;
     color: #fff;
     border-radius: 35px;
-    margin-left: 70px;
 }
 
-.offLogin {
+.hideLogin {
     width: 130px;
     height: 55px;
     text-align: center;
     align-self: center;
     padding: 15px 5px;
-    background-color: #6253BD;
+    background-color: #f5f5fc;
     color: #fff;
     border-radius: 35px;
-    margin-left: 70px;
 }
+

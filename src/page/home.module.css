@@ -1,0 +1,91 @@
+.container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.greet {
+    margin: 80px 0px;
+    display: flex;
+}
+
+.titleGreet {
+    flex-grow: 1;
+}
+
+.imgGreet {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imgRandom {
+    width: 165px;
+    height: 100px;
+    border-radius: 10px;
+    margin: 10px 13px;
+}
+
+.firstGreet {
+    font-size: 45px;
+}
+
+.secondGreet1 {
+    margin-top: 35px;
+    font-size: 20px;
+}
+
+.secondGreet {
+    font-size: 20px;
+}
+
+.btnCheck {
+    margin-top: 20px;
+    display: flex;
+    padding: 15px 2px;
+    background: #6253BD;
+    color: #fff;
+    width: 20%;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+.content {
+    margin-bottom: 50px;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+hr {
+    width: 400px;
+    border: 2px solid #6253BD;
+    border-radius: 4px;
+}
+
+.subtitle {
+    width: 400px;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.formFeed {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+}
+
+textarea {
+    width: 80%;
+    height: 100px;
+}
+
+button {
+    width: 20%;
+    border-radius: 50%;
+}
