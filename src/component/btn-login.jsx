@@ -1,10 +1,10 @@
-
+import { Link } from 'react-router-dom'
 import styles from './btn-login.module.css'
 
 const ButtonLogin = ()=> {
     return (
         <div className={styles.btnLogin}>
-            Login
+            <Link to="/login" style={{ textDecoration: 'none', color:"white" }}>Login</Link>
         </div>
     )
 }
@@ -12,7 +12,7 @@ const ButtonLogin = ()=> {
 const HideLogin = ()=> {
     return (
         <div className={styles.hideLogin}>   
-
+            
         </div>
     )
 }
