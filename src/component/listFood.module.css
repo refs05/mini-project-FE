@@ -13,6 +13,17 @@
     border: 2px solid #6253BD;
     border-radius: 10px;
     padding: 10px;
+    margin-bottom: 20px;
+}
+
+.descTitle {
+    margin: 6px 0px;
+    font-size: larger;
+    font-weight: 600;
+}
+
+.descDiff {
+    font-size: 14px;
 }
 
 .imgTrending {
@@ -21,7 +32,25 @@
     border-radius: 10px;
 }
 
-.subtit {
-    width: 200px;
-    font-size: 64px;
+.likeComm {
+    display: flex;
+    height: 20px;
+}
+
+.likes, .comment {
+    display: flex;
+    margin-right: 12px;
+}
+
+.imgLike, .imgComment {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+}
+
+.searchList {
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }

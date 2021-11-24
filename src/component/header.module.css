@@ -3,7 +3,7 @@
     display: flex;
     margin: 0 auto;
     justify-content: space-between;
-    font-weight: 550;
+    /* font-weight: 550; */
 }
 
 .logo {
@@ -28,3 +28,4 @@
     font-size: 17px;
     cursor: pointer;
 }
+

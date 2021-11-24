@@ -1,0 +1,33 @@
+.wrapper {
+    height: 100%;
+}
+
+.container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.wrapSearch {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0px;
+}
+
+.inputSearch {
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: 2px solid black;
+    width: 50%;
+}
+
+.submitSearch {
+    width: 100px;
+    /* border: 2px solid black;
+    border-left: 0; */
+    border: none;
+    background-color: #6253BD;
+    color: white;
+    position: relative;
+    right: 100px;
+    border-radius: 0px 20px 20px 0px;
+}

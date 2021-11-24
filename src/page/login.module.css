@@ -41,10 +41,11 @@
     background: #6253BD;
     padding: 20px;
     width: 65%;
-    color: white;
+    color: #fff;
     border-radius: 10px;
     font-weight: 500;
     font-size: medium;
     font-family: 'Manrope', sans-serif;
     outline: none;
 }
+

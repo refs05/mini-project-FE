@@ -2,7 +2,8 @@ import Header from "../component/header"
 import { useState } from "react"
 import styles from './home.module.css'
 import imgGreet from '../img/pangsitJepang.jpg'
-import ListFood from "../component/listFood"
+import { ListFood } from "../component/listFood"
+import Footer from "../component/footer"
 
 const Home = ()=> {
     const [buttonLogin] = useState(true)
@@ -52,8 +53,10 @@ const Home = ()=> {
                         <div className={styles.subtitle}>About</div>
                         <hr />
                     </div>
-                    <div>
-                    This Website is contain a lot of Indonesian Food’s  Recipes. The purpose of this website is to help people to find the recipe. The people also can give comment and likes on every recipe.
+                    <div className={styles.message}>
+                        <div>This Website is contain a lot of Indonesian Food’s  Recipes.</div>
+                        <div>The purpose of this website is to help people to find the recipe.</div>
+                        <div>The people also can give comment and likes on every recipe.</div>
                     </div>
                 </div>
                 <div className={styles.content}>
@@ -63,17 +66,14 @@ const Home = ()=> {
                         <hr />
                     </div>
                     <div className={styles.formFeed}>
-                            <textarea name="" id="" cols="30" rows="10"/>
-                            <button>Send</button>
+                            <div className={styles.wrapFormFeed}>
+                                <textarea name="" id="" cols="30" rows="4"/>
+                                <button>Send</button>
+                            </div>
                     </div>
                 </div>
-                <div className="footer">
-                    <div className="contact"></div>
-                    <div className="information"></div>
-                    <div className="address"></div>
-                    <div className="copyright"></div>
-                </div>
             </div>
+            <Footer />
         </div>
     )
 }
