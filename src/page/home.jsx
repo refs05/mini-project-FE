@@ -4,10 +4,28 @@ import styles from './home.module.css'
 import imgGreet from '../img/pangsitJepang.jpg'
 import { ListFood } from "../component/listFood"
 import Footer from "../component/footer"
+import { Link } from "react-router-dom"
+import useStoreFeedBack from "../hook/StoreFeedBack"
 
 const Home = ()=> {
     const [buttonLogin] = useState(true)
 
+    const [userFeedBack, setUserFeedBack] = useState("")
+
+    const { storeFeedBack, loadingStore } = useStoreFeedBack(userFeedBack);
+
+    const onChangeFeedBack = (e)=> {
+        if(e.target) {
+            setUserFeedBack(e.target.value)
+        }
+    }
+
+    const InsertFeedBack = () => {
+        storeFeedBack({variables: {
+            message: userFeedBack,
+        }})
+        setUserFeedBack("")
+    }
     return (
         <div >
             <Header btnLogin={buttonLogin}/>
@@ -19,8 +37,9 @@ const Home = ()=> {
                         <div className={styles.firstGreet}>What You Want !</div>
                         <div className={styles.secondGreet1}>Welcome !</div>
                         <div className={styles.secondGreet}>Search Your Favorite Recipe !</div>
-                        <div className={styles.btnCheck}>
+                        <div><Link to="/search" className={styles.btnCheck}>
                             Check Now
+                            </Link>
                         </div>
                     </div>
                     <div className={styles.imgGreet}>
@@ -67,8 +86,8 @@ const Home = ()=> {
                     </div>
                     <div className={styles.formFeed}>
                             <div className={styles.wrapFormFeed}>
-                                <textarea name="" id="" cols="30" rows="4"/>
-                                <button>Send</button>
+                                <textarea name="" id="" cols="30" rows="4" value={userFeedBack} onChange={onChangeFeedBack}/>
+                                <button onClick={InsertFeedBack}>Send</button>
                             </div>
                     </div>
                 </div>

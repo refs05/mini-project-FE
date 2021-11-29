@@ -1,0 +1,60 @@
+.wrapFood {
+    border: 2px solid #6253BD;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.descTitle {
+    margin: 6px 0px;
+    font-size: larger;
+    font-weight: 600;
+}
+
+.descDiff {
+    font-size: 14px;
+}
+
+.imgTrending {
+    width: 267px;
+    height: 160px;
+    border-radius: 10px;
+}
+
+.likeComm {
+    display: flex;
+    height: 20px;
+}
+
+.likes, .comment {
+    display: flex;
+    margin-right: 12px;
+}
+
+.checkRecipe {
+    margin: 0 auto;
+    width: 130px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #6253BD;
+    color: white;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    border: 1px solid white;
+}
+
+.checkRecipe:hover {
+    background: white;
+    color: #6253BD;
+    border: 1px solid #6253BD;
+}
+
+.imgLike, .imgComment {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+}

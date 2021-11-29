@@ -1,162 +1,38 @@
-import imgFood from '../img/pangsitJepang.jpg'
 import styles from './listFood.module.css'
-import like from '../img/like.png'
-import comment from '../img/comment.png'
+import FoodItem from './foodItem'
+import useGetTrending from '../hook/GetTrending'
+import { useState, useEffect } from 'react'
+import useGetAllRecipe from '../hook/GetAllRecipe'
 
 const ListFood = ()=> {
+    const [trending, setTrending] = useState([]);
+    const { errorGetTrending, loadingGetTrending, dataGetTrending } = useGetTrending();
+
+    useEffect(() => {
+        if (dataGetTrending) {
+            setTrending(dataGetTrending.recipe);
+        }
+    }, [dataGetTrending])
+
+    console.log(dataGetTrending?.recipe)
     return (
         <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">
             <div className="carousel-inner">
                 <div className="carousel-item active" data-bs-interval="10000">
                     <div className={styles.trendFood}>
                         <div className={styles.wrapList}>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
+                            {trending.slice(0, 3).map((item, index) => (
+                                <FoodItem key={index} recipe={item}/>
+                            ))}
                         </div>
                     </div>
                 </div>
                 <div className="carousel-item" data-bs-interval="2000">
                     <div className={styles.trendFood}>
                         <div className={styles.wrapList}>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="carousel-item">
-                    <div className={styles.trendFood}>
-                        <div className={styles.wrapList}>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
+                            {trending.slice(3, 6).map((item, index) => (
+                                <FoodItem key={index} recipe={item}/>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -174,294 +50,50 @@ const ListFood = ()=> {
 }
 
 const ListFoodSearch = ()=> {
+    const [allrecipe, setAllRecipe] = useState([]);
+    const { errorGetAllRecipe, loadingGetAllRecipe, dataGetAllRecipe } = useGetAllRecipe();
+
+    useEffect(() => {
+        if (dataGetAllRecipe) {
+            setAllRecipe(dataGetAllRecipe.recipe);
+        }
+    }, [dataGetAllRecipe])
+
+    console.log(dataGetAllRecipe?.recipe)
+
     return (
         <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">
             <div className="carousel-inner">
-                <div className="carousel-item active" data-bs-interval="1000000">
+                <div className="carousel-item active" data-bs-interval="10000">
                     <div className={styles.trendFood}>
                         <div className={styles.searchList}>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
+                            {allrecipe.slice(0, 7).map((item, index) => (
+                                <FoodItem key={index} recipe={item}/>
+                            ))}
                         </div>
                     </div>
                 </div>
                 <div className="carousel-item" data-bs-interval="2000">
                     <div className={styles.trendFood}>
                         <div className={styles.searchList}>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <FoodItem />
+                            <FoodItem />
+                            <FoodItem />
+                            <FoodItem />
+                            <FoodItem />
+                            <FoodItem />
                         </div>
                     </div>
                 </div>
                 <div className="carousel-item">
                     <div className={styles.trendFood}>
                         <div className={styles.searchList}>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.wrapFood}>
-                                <img src={imgFood} alt="" className={styles.imgTrending} />
-                                <div className={styles.descTitle}>Pangsit Jepang</div>
-                                <div className={styles.descDiff}>Kesulitan : Mudah</div>
-                                <div className={styles.likeComm}>
-                                    <div className={styles.likes}>
-                                        <img src={like} alt="" className={styles.imgLike} />
-                                        <p>107</p>
-                                    </div>
-                                    <div className={styles.comment}>
-                                        <img src={comment} alt="" className={styles.imgComment} />
-                                        <p>57</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <FoodItem />
+                            <FoodItem />
+                            <FoodItem />
+                            <FoodItem />
+                            <FoodItem />
+                            <FoodItem />
                         </div>
                     </div>
                 </div>
