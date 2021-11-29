@@ -52,7 +52,7 @@ const Detail = ()=> {
     const { dataLikeSubs, loadingLikeSubs, errorLikeSubs } = useLikeSubs(id);
     const { errorGetRecipeByID, loadingGetRecipeByID, dataGetRecipeByID } = useGetRecipeByID(id);
     const { storeComment, loadingStore } = useStoreComment(userComment, id, dataLocal[0].id);
-    const { errorGetComment, loadingGetComment, dataGetComment, refetch } = useGetComment(id);
+    const { errorGetComment, loadingGetComment, dataGetComment } = useGetComment(id);
 
     const [buttonLogin] = useState(true)
     const [likeButton, setLikeButton] = useState(false)
@@ -65,7 +65,6 @@ const Detail = ()=> {
 
     useEffect(() => {
         if (dataGetComment) {
-            refetch();
             setDataComment(dataGetComment.comment);
         }
     }, [dataGetComment])

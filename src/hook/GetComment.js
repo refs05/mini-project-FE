@@ -6,8 +6,8 @@ export default function useGetComment(id) {
         error: errorGetComment,
         loading: loadingGetComment,
         data: dataGetComment,
-        refetch
+
     } = useQuery(GetComment, {variables: { id: id }});
 
-    return { errorGetComment, loadingGetComment, dataGetComment, refetch }
+    return { errorGetComment, loadingGetComment, dataGetComment }
 }

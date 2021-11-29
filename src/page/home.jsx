@@ -58,7 +58,7 @@ const Home = ()=> {
                         </div>
                     </div>
                 </div>
-                <div className={styles.content}>
+                <div className={styles.content} id="trending">
                     <div className={styles.title}>
                         <hr />
                         <div className={styles.subtitle}>Trending Recipes</div>
