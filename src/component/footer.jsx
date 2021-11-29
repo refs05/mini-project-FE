@@ -21,7 +21,7 @@ const Footer = ()=> {
                     <div>
                         <div>Further Information</div>
                         <div className={styles.detailFoot}>
-                            <div>Terms dan Conditions</div>
+                            <div>Terms & Conditions</div>
                             <div>Privacy Policy</div>
                         </div>
                     </div>

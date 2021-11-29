@@ -6,46 +6,7 @@
 .wrapList {
     width: 70%;
     display: flex;
-    justify-content: space-evenly;
-}
-
-.wrapFood {
-    border: 2px solid #6253BD;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-.descTitle {
-    margin: 6px 0px;
-    font-size: larger;
-    font-weight: 600;
-}
-
-.descDiff {
-    font-size: 14px;
-}
-
-.imgTrending {
-    width: 230px;
-    height: 140px;
-    border-radius: 10px;
-}
-
-.likeComm {
-    display: flex;
-    height: 20px;
-}
-
-.likes, .comment {
-    display: flex;
-    margin-right: 12px;
-}
-
-.imgLike, .imgComment {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
+    justify-content: space-between;
 }
 
 .searchList {

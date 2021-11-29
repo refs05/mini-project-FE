@@ -4,7 +4,9 @@ import styles from './btn-login.module.css'
 const ButtonLogin = ()=> {
     return (
         <div className={styles.btnLogin}>
-            <Link to="/login" style={{ textDecoration: 'none', color:"white" }}>Login</Link>
+            <Link to="/login" className={styles.linkLogin}>
+                    Login
+            </Link>
         </div>
     )
 }

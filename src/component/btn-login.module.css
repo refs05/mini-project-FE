@@ -1,10 +1,7 @@
 .btnLogin {
     width: 130px;
     height: 55px;
-    text-align: center;
     align-self: center;
-    padding: 15px 5px;
-    cursor: pointer;
     background-color: #6253BD;
     color: #fff;
     border-radius: 35px;
@@ -21,3 +18,21 @@
     border-radius: 35px;
 }
 
+.linkLogin {
+    width: 130px;
+    height: 55px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 35px;
+    transition: ease-out 0.5s;
+    border: 2px solid white;
+}
+
+.linkLogin:hover {
+    color: #6253BD;
+    background: white;
+    border: 2px solid #6253BD;
+}
