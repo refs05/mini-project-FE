@@ -17,7 +17,7 @@ const FoodItem = (props) => {
                 </div>
                 <div className={styles.comment}>
                     <img src={comment} alt="" className={styles.imgComment} />
-                    <p>57</p>
+                    <p>{props.recipe?.comments.length}</p>
                 </div>
             </div>
             <Link to={`/detail/${props.recipe?.id}`} style={{textDecoration: "none"}}>

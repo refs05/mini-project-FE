@@ -1,7 +1,8 @@
-import {ButtonLogin, HideLogin} from "./btn-login"
+import {HideLogin, StatusLog} from "./btn-login"
 import styles from '../component/header.module.css'
 import logo from '../img/Logo.png'
 import { Link } from "react-router-dom"
+import { HashLink } from "react-router-hash-link"
 
 const Header = (props)=> {
     return (
@@ -26,21 +27,21 @@ const Header = (props)=> {
                         </Link>
                     </div>
                     <div className={styles.navItem}>
-                        <Link to="/" style={{textDecoration:"none", color:"#6253BD"}}>
+                        <HashLink to="/#trending" style={{textDecoration:"none", color:"#6253BD"}}>
                             <div className={styles.linkHome}>
                                 Trending
                             </div>
-                        </Link>
+                        </HashLink>
                     </div>
                     <div className={styles.navItem}>
-                        <Link to="/" style={{textDecoration:"none", color:"#6253BD"}}>
+                        <HashLink to="/#about" style={{textDecoration:"none", color:"#6253BD"}}>
                             <div className={styles.linkHome}>
                                 About
                             </div>
-                        </Link>
+                        </HashLink>
                     </div>
                 </div>
-                {props.btnLogin ? <ButtonLogin /> : <HideLogin/>}
+                {props.btnLogin ? <StatusLog /> : <HideLogin/>}
             </div>
         </div>
     )

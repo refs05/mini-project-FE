@@ -52,7 +52,7 @@ const Detail = ()=> {
     const { dataLikeSubs, loadingLikeSubs, errorLikeSubs } = useLikeSubs(id);
     const { errorGetRecipeByID, loadingGetRecipeByID, dataGetRecipeByID } = useGetRecipeByID(id);
     const { storeComment, loadingStore } = useStoreComment(userComment, id, dataLocal[0].id);
-    const { errorGetComment, loadingGetComment, dataGetComment, refetch } = useGetComment(id);
+    const { errorGetComment, loadingGetComment, dataGetComment } = useGetComment(id);
 
     const [buttonLogin] = useState(true)
     const [likeButton, setLikeButton] = useState(false)
@@ -65,7 +65,6 @@ const Detail = ()=> {
 
     useEffect(() => {
         if (dataGetComment) {
-            refetch();
             setDataComment(dataGetComment.comment);
         }
     }, [dataGetComment])
@@ -91,7 +90,6 @@ const Detail = ()=> {
         setUserComment("")
     }
     
-
     // console.log(dataComment)
     // console.log(dataLikeSubs)
     console.log(likeSubs[0]?.like)
@@ -112,9 +110,7 @@ const Detail = ()=> {
                             <div>Publisher : {dataRecipe[0]?.publisher}</div>
                             <div>Publish Date : {dataRecipe[0]?.datePublish}</div>
                             <div className="infoDetail">Likes : {likeSubs[0]?.like}</div>
-                            {/* <div className={likeButton ? <UnLike /> : <WillLike />} onClick={()=> setLikeButton(status => !status)}>{likeButton ? "Liked" : "Like This"}</div> */}
                             <div onClick={()=>setLikeButton(status => !status)}>{likeButton ? <UnLike /> : <WillLike />}</div>
-                            
                         </div>
                     </div>
                     <div className={styles.descIng}>
@@ -135,16 +131,16 @@ const Detail = ()=> {
                         <div className={styles.titleComm}>Comment</div>
                         <div className={styles.wrapComm}>   
                             {dataComment.map((item, index) => (
-                                <div key={index} className="contentComm">
+                                <div key={index} className={styles.contentComm}>
                                     <div className={styles.commenter}>{item.user.email}</div>
-                                    <div className={styles.messComm}>{item.comment}</div>
+                                    <div className={styles.messComm}>Said: "{item.comment}"</div>
                                 </div>
                             ))}
                         </div>
                         <div className={styles.userComm}>
                             <textarea name="" id="" cols="3" rows="2" className={styles.inputComm} placeholder="comment here..." value={userComment} onChange={onChangeComment}></textarea>
                             <div className={styles.send} onClick={InsertComment}>
-                                <img src={send} alt="" />
+                                <img src={send} alt="Send Button" />
                             </div>
                         </div>
                     </div>

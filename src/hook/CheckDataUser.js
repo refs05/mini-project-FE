@@ -1,5 +1,5 @@
 import { useLazyQuery } from "@apollo/client";
-import { GetUserID } from "../GraphQL/Query";
+import { GetUserID } from "../graphql/query";
 
 export default function useGetUserID(email, password) {
     const [ getUserID, {

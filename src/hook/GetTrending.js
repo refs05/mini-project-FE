@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GetTrending } from "../GraphQL/Query";
+import { GetTrending } from "../graphql/query";
 
 export default function useGetTrending() {
     const {

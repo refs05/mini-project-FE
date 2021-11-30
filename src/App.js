@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Search from "./page/search";
 import Detail from "./page/detail";
+import { ListFood } from "./component/listFood";
 
 function App() {
   return (
