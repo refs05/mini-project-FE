@@ -8,6 +8,10 @@ export const GetTrending = gql`
         like
         thumb
         title
+        comments {
+            id
+            comment
+        }
         }
     }
 `
@@ -40,6 +44,10 @@ export const GetAllRecipe = gql`
         thumb
         time
         id
+        comments {
+            id
+            comment
+        }
         }
     }
 `

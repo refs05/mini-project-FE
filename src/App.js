@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Search from "./page/search";
 import Detail from "./page/detail";
+import { ListFood } from "./component/listFood";
 
 function App() {
   return (
@@ -17,7 +18,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/search" element={<Search />} />
         <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

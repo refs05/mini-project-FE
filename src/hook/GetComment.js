@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GetComment } from "../GraphQL/Query";
+import { GetComment } from "../graphql/query";
 
 export default function useGetComment(id) {
     const {

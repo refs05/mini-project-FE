@@ -59,7 +59,7 @@ const ListFoodSearch = ()=> {
         }
     }, [dataGetAllRecipe])
 
-    console.log(dataGetAllRecipe?.recipe)
+    // console.log(dataGetAllRecipe?.recipe)
 
     return (
         <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">

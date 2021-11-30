@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GetAllRecipe } from "../GraphQL/Query";
+import { GetAllRecipe } from "../graphql/query";
 
 export default function useGetAllRecipe() {
     const {

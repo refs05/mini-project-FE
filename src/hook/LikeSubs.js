@@ -1,5 +1,5 @@
 import { useSubscription } from "@apollo/client";
-import { LikeSubs } from "../GraphQL/subscription";
+import { LikeSubs } from "../graphql/subscription";
 
 export default function useLikeSubs(id) {
     const {

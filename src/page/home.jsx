@@ -9,7 +9,6 @@ import useStoreFeedBack from "../hook/StoreFeedBack"
 
 const Home = ()=> {
     const [buttonLogin] = useState(true)
-
     const [userFeedBack, setUserFeedBack] = useState("")
 
     const { storeFeedBack, loadingStore } = useStoreFeedBack(userFeedBack);
@@ -66,7 +65,7 @@ const Home = ()=> {
                     </div>
                     <ListFood />
                 </div>
-                <div className={styles.content}>
+                <div className={styles.content} id="about">
                     <div className={styles.title}>
                         <hr />
                         <div className={styles.subtitle}>About</div>

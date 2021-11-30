@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
-import { StoreComment } from "../GraphQL/mutation";
-import { GetComment } from "../GraphQL/Query";
+import { StoreComment } from "../graphql/mutation";
+import { GetComment } from "../graphql/query";
 
 export default function useStoreComment(comment, recipe_id, user_id) {
     const [storeComment, {loading: loadingStore}] = useMutation(StoreComment, {
