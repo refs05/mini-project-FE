@@ -3,7 +3,7 @@ import styles from './login.module.css'
 import imgLogin from '../img/imgLogin.jpg'
 import { useEffect, useState } from "react"
 import useGetUserID from "../hook/CheckDataUser"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const baseData = {
     email: "",
@@ -23,6 +23,7 @@ const Login = ()=> {
     const [buttonLogin] = useState(false)
     const [data, setData] = useState(baseData);
     const [errors, setError] = useState(baseError);
+    const navigate = useNavigate()
 
     const { getUserID , errorGetUserID, loadingGetUserID, dataGetUserID } = useGetUserID(data.email, data.password);
 
@@ -30,9 +31,18 @@ const Login = ()=> {
         setError((prev) => ({ ...prev, [name]: message }));
     }
 
-    useEffect (()=> {
-        localStorage.removeItem("User")
-    }, [])
+    useEffect(() => {
+        localStorage.clear()
+        if (dataGetUserID?.user.length == 1) {
+          localStorage.setItem("User", JSON.stringify(dataGetUserID?.user));
+          alert("Login Success")
+          navigate("/");
+        } else if (dataGetUserID?.user.length == 0) {
+            alert("Login Fail")
+        }
+    }, [dataGetUserID?.user]);
+
+    console.log(dataGetUserID)
 
     function changeHandler(e) {
         const name = e.target.name;
@@ -63,6 +73,11 @@ const Login = ()=> {
         e.preventDefault();
         let isValid = true;
 
+        getUserID({variables : {
+            email : data.email,
+            password : data.password,
+        }});
+
         if (!data.email.includes("@")) {
             handleError("email", "missing @");
             isValid = false;
@@ -82,22 +97,15 @@ const Login = ()=> {
         if (isValid) {
             const keys = Object.keys(errors);
             isValid = isValid && keys.every((key) => errors[key] === "");
-            if (isValid) {
+            if (isValid && dataGetUserID?.user.length == 1) {
                 alert(`Login Success`);
-                getUserID({variables : {
-                    email : data.email,
-                    password : data.password,
-                }});
-            } else {
-                alert("Login Fail!");
-            }
+            } 
         } else {
             alert("Login Fail");
         }
-      
-    }    
-
-    localStorage.setItem("User", JSON.stringify(dataGetUserID?.user));
+        
+    }   
+    
     
     return (
         <div className={styles.wrapper}>
