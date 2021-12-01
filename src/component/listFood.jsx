@@ -64,7 +64,7 @@ const ListFoodSearch = ()=> {
                 <div className="carousel-item active" data-bs-interval="10000">
                     <div className={styles.trendFood}>
                         <div className={styles.searchList}>
-                            {allrecipe.slice(0, 7).map((item, index) => (
+                            {allrecipe.slice(0, 6).map((item, index) => (
                                 <FoodItem key={index} recipe={item}/>
                             ))}
                         </div>
@@ -73,24 +73,18 @@ const ListFoodSearch = ()=> {
                 <div className="carousel-item" data-bs-interval="2000">
                     <div className={styles.trendFood}>
                         <div className={styles.searchList}>
-                            <FoodItem />
-                            <FoodItem />
-                            <FoodItem />
-                            <FoodItem />
-                            <FoodItem />
-                            <FoodItem />
+                            {allrecipe.slice(6, 12).map((item, index) => (
+                                <FoodItem key={index} recipe={item}/>
+                            ))}
                         </div>
                     </div>
                 </div>
                 <div className="carousel-item">
                     <div className={styles.trendFood}>
                         <div className={styles.searchList}>
-                            <FoodItem />
-                            <FoodItem />
-                            <FoodItem />
-                            <FoodItem />
-                            <FoodItem />
-                            <FoodItem />
+                            {allrecipe.slice(12, 18).map((item, index) => (
+                                <FoodItem key={index} recipe={item}/>
+                            ))}
                         </div>
                     </div>
                 </div>
