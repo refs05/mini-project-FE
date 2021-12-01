@@ -37,7 +37,7 @@ export const UnLike = gql`
     }
 `
 
-export const UpdateComment = gql `
+export const UpdateComment = gql`
     mutation EditComment($rec_id: Int!, $email: String!, $id: Int!, $comment: String!) {
         update_comment(where: {recipe_id: {_eq: $rec_id}, user: {email: {_eq: $email}}, id: {_eq: $id}}, _set: {comment: $comment}) {
         affected_rows
@@ -51,3 +51,10 @@ export const UpdateComment = gql `
     }
 `
 
+export const DeleteComment = gql`
+    mutation DeleteComment($id: Int!) {
+        delete_comment(where: {id: {_eq: $id}}) {
+        affected_rows
+        }
+    }
+`

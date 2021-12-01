@@ -11,6 +11,7 @@ import useLikeSubs from "../hook/LikeSubs";
 import useUpdateLike from "../hook/UpdateLike";
 import useUnLike from "../hook/UnLike";
 import useUpdateComment from "../hook/EditComment";
+import useDeleteComment from "../hook/DeleteComment";
 
 const WillLike = ()=> {
     let { id } = useParams()
@@ -204,6 +205,7 @@ const UserComment = (props) => {
     const [userComment, setUserComment] = useState("")
 
     const { updateComment, loadingUpdate } = useUpdateComment(userComment, props.rec_id, props.email, props.id);
+    const { deleteComment, loadingDelete } = useDeleteComment(props.id);
 
     const UpdateComment = () => { 
 
@@ -215,6 +217,12 @@ const UserComment = (props) => {
         }})
         setUserComment("")
         setEditComment(!editComment)
+    }
+
+    const DeleteComment = () => { 
+        deleteComment({variables: {
+            id: props.id
+        }})
     }
 
     const onChangeComment = (e)=> {
@@ -235,7 +243,7 @@ const UserComment = (props) => {
                     <div className={styles.commenter}>{props.email}</div>
                     <div className={styles.messComm}>Said: "{props.comment}"</div>
                     <div onClick={()=> setEditComment(!editComment)}>edit</div>
-                    <div>delete</div>
+                    <div onClick={DeleteComment}>delete</div>
                 </>
             }
             
