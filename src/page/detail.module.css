@@ -157,8 +157,9 @@
 }
 
 .contentComm {
-    padding: 0px 4px;
     margin-bottom: 10px;
+    display: flex;
+    /* justify-content: space-between; */
 }
 
 .inputComm {
@@ -166,6 +167,47 @@
     border: 1px solid grey;
     border-radius: 4px;
     font-size: 15px;
+}
+
+/* .editArea {
+    display: flex;
+    justify-content: center;
+} */
+
+.wrapEditDel {
+    display: flex;
+    justify-content: space-between;
+    width: 130px;
+    margin-left: 600px;
+}
+
+.editDel {
+    padding: 5px;
+    background: #6253BD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 60px;
+    border-radius: 5px;
+    height: 40px;
+    color: white;
+    font-size: 17px;
+}
+
+.cancelEdit {
+    padding: 5px;
+    background: #6253BD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 60px;
+    border-radius: 5px;
+    height: 40px;
+    color: white;
+    font-size: 17px;
+    margin-left: 24px;
 }
 
 .send {
