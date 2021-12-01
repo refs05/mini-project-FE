@@ -41,7 +41,7 @@ const Header = (props)=> {
                         </HashLink>
                     </div>
                 </div>
-                {props.btnLogin ? <StatusLog /> : <HideLogin/>}
+                {props.btnLogin ? <StatusLog email={props.email}/> : <HideLogin/>}
             </div>
         </div>
     )

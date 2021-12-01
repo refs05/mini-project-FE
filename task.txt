@@ -1,8 +1,5 @@
 buat ppt
 benerin figma
-tampilan ketika sudah login
-logout
-validasi
-error, loading
-search logic
-
+responsive
+ketika submit berhasil pindah halaman (optional)
+bug undefined

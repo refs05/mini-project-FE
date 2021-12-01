@@ -36,3 +36,32 @@
     background: white;
     border: 2px solid #6253BD;
 }
+
+.btnLogout {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5fc;
+    align-self: center;
+    color: #fff;
+    border-radius: 35px;
+    color: black;
+}
+.linkLogout {
+    width: 75px;
+    height: 35px;
+    background: #6253BD;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 35px;
+    transition: ease-out 0.5s;
+    border: 2px solid white;
+}
+
+.linkLogout:hover {
+    color: #6253BD;
+    background: white;
+    border: 2px solid #6253BD;
+}

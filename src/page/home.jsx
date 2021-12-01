@@ -1,17 +1,43 @@
 import Header from "../component/header"
 import { useState } from "react"
 import styles from './home.module.css'
-import imgGreet from '../img/pangsitJepang.jpg'
 import { ListFood } from "../component/listFood"
 import Footer from "../component/footer"
 import { Link } from "react-router-dom"
 import useStoreFeedBack from "../hook/StoreFeedBack"
+import { useEffect } from "react"
+import useGetTrending from "../hook/GetTrending"
 
 const Home = ()=> {
     const [buttonLogin] = useState(true)
     const [userFeedBack, setUserFeedBack] = useState("")
+    const [userEmail, setUserEmail] = useState("")
 
     const { storeFeedBack, loadingStore } = useStoreFeedBack(userFeedBack);
+
+    let retrievedObject = localStorage.getItem('User')
+    let dataLocal = JSON.parse(retrievedObject);
+
+    const [trending, setTrending] = useState([]);
+    const { errorGetTrending, loadingGetTrending, dataGetTrending } = useGetTrending();
+
+    useEffect(() => {
+        if (dataGetTrending) {
+            setTrending(dataGetTrending.recipe);
+        }
+    }, [dataGetTrending])
+
+    useEffect(() => {
+        if(dataLocal == null) {
+            return null
+        } else if (dataLocal == undefined){
+            return null
+        } else {
+            if (dataLocal[0]?.__typename === "user") {
+                return setUserEmail(dataLocal[0]?.email)
+            }
+        }
+    }, [])
 
     const onChangeFeedBack = (e)=> {
         if(e.target) {
@@ -19,15 +45,24 @@ const Home = ()=> {
         }
     }
 
+        if (loadingGetTrending) {
+            return "Fetching Data...."
+        }
+
+        if (errorGetTrending) {
+            return "Fetching Data Error"
+        }
+
     const InsertFeedBack = () => {
         storeFeedBack({variables: {
             message: userFeedBack,
         }})
         setUserFeedBack("")
     }
+
     return (
         <div >
-            <Header btnLogin={buttonLogin}/>
+            <Header btnLogin={buttonLogin} email={userEmail}/>
             <div className={styles.container}>
                 <div className={styles.greet}>
                     <div className={styles.titleGreet}>
@@ -43,17 +78,19 @@ const Home = ()=> {
                     </div>
                     <div className={styles.imgGreet}>
                         <div>
-                            <img src={imgGreet} alt="Recipe Food" className={styles.imgRandom} />
-                            <img src={imgGreet} alt="Recipe Food" className={styles.imgRandom} />
+                            {trending.slice(0,2).map((item, index) => (
+                                <img key={index} src={item.thumb} alt="Recipe Food" className={styles.imgRandom} />
+                            ))}
                         </div>
                         <div>
-                            <img src={imgGreet} alt="Recipe Food" className={styles.imgRandom} />
-                            <img src={imgGreet} alt="Recipe Food" className={styles.imgRandom} />
-                            <img src={imgGreet} alt="Recipe Food" className={styles.imgRandom} />
+                            {trending.slice(2,5).map((item, index) => (
+                                <img key={index} src={item.thumb} alt="Recipe Food" className={styles.imgRandom} />
+                            ))}
                         </div>
                         <div>
-                            <img src={imgGreet} alt="Recipe Food" className={styles.imgRandom} />
-                            <img src={imgGreet} alt="Recipe Food" className={styles.imgRandom} />
+                            {trending.slice(5,7).map((item, index) => (
+                                <img key={index} src={item.thumb} alt="Recipe Food" className={styles.imgRandom} />
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -63,7 +100,7 @@ const Home = ()=> {
                         <div className={styles.subtitle}>Trending Recipes</div>
                         <hr />
                     </div>
-                    <ListFood />
+                    <ListFood trending={trending}/>
                 </div>
                 <div className={styles.content} id="about">
                     <div className={styles.title}>
