@@ -1,49 +1,45 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './btn-login.module.css'
+import { useEffect } from 'react'
 
-// const ButtonLogin = ()=> {
-
-//     return (
-//         <div className={styles.btnLogin}>
-//             <Link to="/login" className={styles.linkLogin}>
-//                     Login
-//             </Link>
-//         </div>
-//     )
-// }
-
-const StatusLog = ()=> {
+const StatusLog = (props)=> {
     const [statusLog, setStatusLog] = useState(false)
     let retrievedObject = localStorage.getItem('User')
     let dataLocal = JSON.parse(retrievedObject);
-    // console.log(dataLocal[0].__typename)
+
+    useEffect(() => {
+        if(dataLocal == null) {
+            return null
+        } else {
+            if (dataLocal[0]?.__typename === "user") {
+                return setStatusLog(true);
+            }
+        }
+    }, [])
+
     
+    const Logout = ()=> {
+        localStorage.removeItem("User")
+        setStatusLog(!statusLog)
+    }
+
     return (
-        // <div>
-        //     {statusLog? <ButtonLogout /> : <ButtonLogin />} 
-        // </div>
-        <div className={styles.btnLogin} >
-            <Link to="/login" className={styles.linkLogin}>
-                    {statusLog? "Logout" : "Login"}
+        <>
+            {statusLog? <div className={styles.btnLogout} >
+            <div>{props.email}</div>
+            <Link to="/" className={styles.linkLogout} onClick={Logout}>
+                    Logout
             </Link>
-            {/* <Link to="/login" className={styles.linkLogin}>
-                    {statusLog? "Logout" : "Login"}
-            </Link> */}
-        </div>
+            </div> : <div className={styles.btnLogin}>
+            <Link to="/login" className={styles.linkLogin}>
+                    Login
+            </Link>
+            </div>} 
+        </>
     )
 }
 
-// const ButtonLogout = ()=> {
-//     localStorage.removeItem("User")
-//     return (
-//         <div className={styles.btnLogin}>
-//             <Link to="/" className={styles.linkLogin}>
-//                     Logout
-//             </Link>
-//         </div>
-//     )
-// }
 
 const HideLogin = ()=> {
     return (

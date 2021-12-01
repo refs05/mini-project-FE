@@ -4,24 +4,15 @@ import useGetTrending from '../hook/GetTrending'
 import { useState, useEffect } from 'react'
 import useGetAllRecipe from '../hook/GetAllRecipe'
 
-const ListFood = ()=> {
-    const [trending, setTrending] = useState([]);
-    const { errorGetTrending, loadingGetTrending, dataGetTrending } = useGetTrending();
+const ListFood = (props)=> {
 
-    useEffect(() => {
-        if (dataGetTrending) {
-            setTrending(dataGetTrending.recipe);
-        }
-    }, [dataGetTrending])
-
-    console.log(dataGetTrending?.recipe)
     return (
         <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">
             <div className="carousel-inner">
                 <div className="carousel-item active" data-bs-interval="10000">
                     <div className={styles.trendFood}>
                         <div className={styles.wrapList}>
-                            {trending.slice(0, 3).map((item, index) => (
+                            {props.trending.slice(0, 3).map((item, index) => (
                                 <FoodItem key={index} recipe={item}/>
                             ))}
                         </div>
@@ -30,7 +21,7 @@ const ListFood = ()=> {
                 <div className="carousel-item" data-bs-interval="2000">
                     <div className={styles.trendFood}>
                         <div className={styles.wrapList}>
-                            {trending.slice(3, 6).map((item, index) => (
+                            {props.trending.slice(3, 6).map((item, index) => (
                                 <FoodItem key={index} recipe={item}/>
                             ))}
                         </div>
@@ -60,6 +51,12 @@ const ListFoodSearch = ()=> {
     }, [dataGetAllRecipe])
 
     // console.log(dataGetAllRecipe?.recipe)
+    if(loadingGetAllRecipe) {
+        return "Fetching Recipes...."
+    }
+    if(errorGetAllRecipe) {
+        return "Fetching Recipes Error...."
+    }
 
     return (
         <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">

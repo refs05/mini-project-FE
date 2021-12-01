@@ -15,10 +15,17 @@ const WillLike = ()=> {
     let { id } = useParams()
     const { updateLike, loadingLike } = useUpdateLike(id);
 
+    let retrievedObject = localStorage.getItem('User')
+    let dataLocal = JSON.parse(retrievedObject);
+
     const AddLike = () => {
-        updateLike({variables: {
-            id: id
-        }})
+        if(dataLocal == null) {
+           return alert("Silahkan login terlebih dahulu")
+        } else {
+            updateLike({variables: {
+                id: id
+            }})
+        }
     }
     return (
         <div className={styles.likeBtn} onClick={AddLike}>Like This</div>
@@ -29,10 +36,18 @@ const UnLike = ()=> {
     let { id } = useParams()
     const { unLike, loadingLike } = useUnLike(id);
 
+    let retrievedObject = localStorage.getItem('User')
+    let dataLocal = JSON.parse(retrievedObject);
+
     const DeLike = () => {
-        unLike({variables: {
-            id: id
-        }})
+        if(dataLocal == null) {
+            return alert("Silahkan login terlebih dahulu")
+
+        } else {
+            unLike({variables: {
+                id: id
+            }})
+        }
     }
     return (
         <div className={styles.likedBtn} onClick={DeLike}>Liked</div>
@@ -45,17 +60,31 @@ const Detail = ()=> {
     const [dataComment, setDataComment] = useState([])
     const [userComment, setUserComment] = useState("")
     const [likeSubs, setLikeSubs] = useState({})
+    const [userEmail, setUserEmail] = useState("")
+
+    let validComment = null
 
     let retrievedObject = localStorage.getItem('User')
     let dataLocal = JSON.parse(retrievedObject);
 
-    const { dataLikeSubs, loadingLikeSubs, errorLikeSubs } = useLikeSubs(id);
+    const { dataLikeSubs, errorLikeSubs } = useLikeSubs(id);
     const { errorGetRecipeByID, loadingGetRecipeByID, dataGetRecipeByID } = useGetRecipeByID(id);
-    const { storeComment, loadingStore } = useStoreComment(userComment, id, dataLocal[0].id);
+    const { storeComment, loadingStore } = useStoreComment(userComment, id, validComment);
     const { errorGetComment, loadingGetComment, dataGetComment } = useGetComment(id);
 
     const [buttonLogin] = useState(true)
     const [likeButton, setLikeButton] = useState(false)
+
+    useEffect(() => {
+        if(dataLocal == null) {
+            return validComment
+        } else {
+            if (dataLocal[0]?.__typename === "user") {
+                validComment = dataLocal[0].id
+                return setUserEmail(dataLocal[0]?.email)
+            }
+        }
+    }, [])
 
     useEffect(() => {
         if (dataGetRecipeByID) {
@@ -75,6 +104,14 @@ const Detail = ()=> {
         }
     }, [dataLikeSubs])
 
+    if (loadingGetRecipeByID || loadingGetComment) {
+        return "Fetching Data...."
+    }
+
+    if (errorLikeSubs || errorGetRecipeByID || errorGetComment) {
+        return "Fetching Data Error"
+    }
+
     const onChangeComment = (e)=> {
         if(e.target) {
             setUserComment(e.target.value)
@@ -82,6 +119,14 @@ const Detail = ()=> {
     }
 
     const InsertComment = () => {
+        if(dataLocal == null) {
+            return alert("Silahkan Login Terlebih Dahulu")
+        } else {
+            if (dataLocal[0]?.__typename === "user") {
+                validComment = dataLocal[0].id
+            }
+        }   
+
         storeComment({variables: {
             comment: userComment,
             recipe_id: id,
@@ -90,12 +135,9 @@ const Detail = ()=> {
         setUserComment("")
     }
     
-    // console.log(dataComment)
-    // console.log(dataLikeSubs)
-    console.log(likeSubs[0]?.like)
     return (
         <div>
-            <Header btnLogin={buttonLogin}/>
+            <Header btnLogin={buttonLogin} email={userEmail}/>
                 <div className={styles.container}>
                     <div className={styles.foodName}>
                         {dataRecipe[0]?.title}
@@ -138,7 +180,7 @@ const Detail = ()=> {
                             ))}
                         </div>
                         <div className={styles.userComm}>
-                            <textarea name="" id="" cols="3" rows="2" className={styles.inputComm} placeholder="comment here..." value={userComment} onChange={onChangeComment}></textarea>
+                            <textarea name="" id="" cols="3" rows="2" className={styles.inputComm} placeholder="comment here..." value={userComment} onChange={onChangeComment} required></textarea>
                             <div className={styles.send} onClick={InsertComment}>
                                 <img src={send} alt="Send Button" />
                             </div>

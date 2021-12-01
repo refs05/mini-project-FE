@@ -4,7 +4,7 @@ import like from '../img/like.png'
 import comment from '../img/comment.png'
 
 const FoodItem = (props) => {
-    console.log(props.recipe?.thumb)
+   
     return (
         <div className={styles.wrapFood}>
             <img src={props.recipe?.thumb} alt="" className={styles.imgTrending} />

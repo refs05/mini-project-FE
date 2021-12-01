@@ -30,7 +30,6 @@
     border-bottom: 2px solid #6253BD;
     background: #f5f5fc;
     width: 65%;
-    margin-bottom: 25px;
     outline: none;
     font-size: 20px;
     padding: 10px 5px;
@@ -49,3 +48,8 @@
     outline: none;
 }
 
+.error {
+    margin-bottom: 25px;
+    font-size: 13px;
+    color: red;
+}
