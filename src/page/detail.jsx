@@ -10,6 +10,7 @@ import useGetComment from "../hook/GetComment";
 import useLikeSubs from "../hook/LikeSubs";
 import useUpdateLike from "../hook/UpdateLike";
 import useUnLike from "../hook/UnLike";
+import useUpdateComment from "../hook/EditComment";
 
 const WillLike = ()=> {
     let { id } = useParams()
@@ -61,6 +62,7 @@ const Detail = ()=> {
     const [userComment, setUserComment] = useState("")
     const [likeSubs, setLikeSubs] = useState({})
     const [userEmail, setUserEmail] = useState("")
+    
 
     let validComment = null
 
@@ -134,6 +136,9 @@ const Detail = ()=> {
         }})
         setUserComment("")
     }
+
+    console.log(dataComment[0])
+    console.log(id)
     
     return (
         <div>
@@ -174,8 +179,10 @@ const Detail = ()=> {
                         <div className={styles.wrapComm}>   
                             {dataComment.map((item, index) => (
                                 <div key={index} className={styles.contentComm}>
+                                    {item.user.email == userEmail ? <UserComment email={item.user.email} comment={item.comment} rec_id={id} id={item.id}/>: <>
                                     <div className={styles.commenter}>{item.user.email}</div>
-                                    <div className={styles.messComm}>Said: "{item.comment}"</div>
+                                    <div className={styles.messComm}>Said: "{item.comment}"</div></>
+                                    }
                                 </div>
                             ))}
                         </div>
@@ -189,6 +196,51 @@ const Detail = ()=> {
                 </div>
             <Footer />
         </div>
+    )
+}
+
+const UserComment = (props) => {
+    const [editComment, setEditComment] = useState(false)
+    const [userComment, setUserComment] = useState("")
+
+    const { updateComment, loadingUpdate } = useUpdateComment(userComment, props.rec_id, props.email, props.id);
+
+    const UpdateComment = () => { 
+
+        updateComment({variables: {
+            comment: userComment,
+            rec_id: props.rec_id,
+            email: props.email,
+            id: props.id
+        }})
+        setUserComment("")
+        setEditComment(!editComment)
+    }
+
+    const onChangeComment = (e)=> {
+        if(e.target) {
+            setUserComment(e.target.value)
+        }
+    }
+    return (
+        <>
+            {editComment ? <>
+            <textarea name="" id="" cols="3" rows="2" className={styles.inputComm} placeholder="comment here..." value={userComment} onChange={onChangeComment} required></textarea>
+            <div className={styles.send} onClick={UpdateComment}>
+                <img src={send} alt="Send Button" />
+            </div>
+            </>
+             :
+                <>
+                    <div className={styles.commenter}>{props.email}</div>
+                    <div className={styles.messComm}>Said: "{props.comment}"</div>
+                    <div onClick={()=> setEditComment(!editComment)}>edit</div>
+                    <div>delete</div>
+                </>
+            }
+            
+            
+        </>
     )
 }
 

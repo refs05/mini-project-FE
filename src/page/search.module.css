@@ -44,12 +44,11 @@
 
 .submitSearch {
     width: 100px;
-    /* border: 2px solid black;
-    border-left: 0; */
     border: none;
     background-color: #6253BD;
     color: white;
     position: relative;
     right: 100px;
     border-radius: 0px 20px 20px 0px;
+    cursor: unset!important;
 }

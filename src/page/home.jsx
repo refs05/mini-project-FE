@@ -18,6 +18,9 @@ const Home = ()=> {
     let retrievedObject = localStorage.getItem('User')
     let dataLocal = JSON.parse(retrievedObject);
 
+    console.log(dataLocal)
+    console.log(retrievedObject)
+
     const [trending, setTrending] = useState([]);
     const { errorGetTrending, loadingGetTrending, dataGetTrending } = useGetTrending();
 
@@ -30,15 +33,14 @@ const Home = ()=> {
     useEffect(() => {
         if(dataLocal == null) {
             return null
-        } else if (dataLocal == undefined){
-            return null
         } else {
             if (dataLocal[0]?.__typename === "user") {
                 return setUserEmail(dataLocal[0]?.email)
             }
         }
+        
     }, [])
-
+    
     const onChangeFeedBack = (e)=> {
         if(e.target) {
             setUserFeedBack(e.target.value)

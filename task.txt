@@ -1,5 +1,4 @@
 buat ppt
 benerin figma
 responsive
-ketika submit berhasil pindah halaman (optional)
-bug undefined
+edit delete comment
