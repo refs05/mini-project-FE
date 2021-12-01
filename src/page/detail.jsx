@@ -180,9 +180,11 @@ const Detail = ()=> {
                         <div className={styles.wrapComm}>   
                             {dataComment.map((item, index) => (
                                 <div key={index} className={styles.contentComm}>
-                                    {item.user.email == userEmail ? <UserComment email={item.user.email} comment={item.comment} rec_id={id} id={item.id}/>: <>
-                                    <div className={styles.commenter}>{item.user.email}</div>
-                                    <div className={styles.messComm}>Said: "{item.comment}"</div></>
+                                    {item.user.email == userEmail ? <UserComment email={item.user.email} comment={item.comment} rec_id={id} id={item.id}/>: 
+                                    <div>
+                                        <div className={styles.commenter}>{item.user.email}</div>
+                                        <div className={styles.messComm}>Said: "{item.comment}"</div>
+                                    </div>
                                     }
                                 </div>
                             ))}
@@ -237,13 +239,18 @@ const UserComment = (props) => {
             <div className={styles.send} onClick={UpdateComment}>
                 <img src={send} alt="Send Button" />
             </div>
+            <div className={styles.cancelEdit} onClick={()=> setEditComment(!editComment)}>Cancel</div>
             </>
              :
-                <>
-                    <div className={styles.commenter}>{props.email}</div>
-                    <div className={styles.messComm}>Said: "{props.comment}"</div>
-                    <div onClick={()=> setEditComment(!editComment)}>edit</div>
-                    <div onClick={DeleteComment}>delete</div>
+                <>  
+                    <div>
+                        <div className={styles.commenter}>{props.email}</div>
+                        <div className={styles.messComm}>Said: "{props.comment}"</div>
+                    </div>
+                    <div className={styles.wrapEditDel}>
+                        <div onClick={()=> setEditComment(!editComment)} className={styles.editDel}>edit</div>
+                        <div onClick={DeleteComment} className={styles.editDel}>delete</div>
+                    </div>
                 </>
             }
             
