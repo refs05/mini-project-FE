@@ -3,7 +3,7 @@ import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 
 const wsLink = new WebSocketLink({
-	uri: "ws://refs05-kampusmerdeka.hasura.app/v1/graphql",
+	uri: "wss://refs05-kampusmerdeka.hasura.app/v1/graphql",
 	options: {
 		reconnect: true,
 		connectionParams: {
