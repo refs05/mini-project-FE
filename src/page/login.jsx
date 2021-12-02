@@ -138,7 +138,7 @@ const Login = ()=> {
 
                         <div className={styles.error}>{errors.password}</div>
                         <Link to="/" style={{textDecoration: "none"}}>
-                            <input type="submit" className={styles.submit} onClick={submitHandler}/>
+                            <input type="submit" className={styles.submit} onClick={submitHandler} value="Login"/>
                         </Link>
                 </div>
             </div>
