@@ -79,7 +79,7 @@ const ListFoodSearch = ()=> {
                         </div>
                     </div>
                 </div>
-                <div className="carousel-item">
+                <div className="carousel-item" data-bs-interval="2000">
                     <div className={styles.trendFood}>
                         <div className={styles.searchList}>
                             {allrecipe.slice(12, 18).map((item, index) => (

@@ -4,6 +4,8 @@ import imgLogin from '../img/imgLogin.jpg'
 import { useEffect, useState } from "react"
 import useGetUserID from "../hook/CheckDataUser"
 import { Link, useNavigate } from "react-router-dom"
+import openEye from '../img/openeye.png'
+import closedEye from '../img/closedeye.png'
 
 const baseData = {
     email: "",
@@ -24,6 +26,7 @@ const Login = ()=> {
     const [data, setData] = useState(baseData);
     const [errors, setError] = useState(baseError);
     const navigate = useNavigate()
+    const [passwordShown, setPasswordShown] = useState(false);
 
     const { getUserID , errorGetUserID, loadingGetUserID, dataGetUserID } = useGetUserID(data.email, data.password);
 
@@ -105,6 +108,10 @@ const Login = ()=> {
         }
         
     }   
+
+    const togglePassword = () => {
+        setPasswordShown(!passwordShown);
+      };
     
     
     return (
@@ -123,7 +130,12 @@ const Login = ()=> {
                         <label htmlFor="password" className={styles.label}>
                                 Password                              
                         </label>
-                        <input id="password" name="password" type="text" className={styles.input} value={data.password} onChange={changeHandler} required/>
+                        <input id="password" name="password" type={passwordShown ? "text" : "password"} className={styles.input} value={data.password} onChange={changeHandler} required/>
+                        
+                        {passwordShown ? 
+                        <img src={openEye} className={styles.passToggle} alt="showPassword" onClick={togglePassword}/> : 
+                        <img src={closedEye} className={styles.passToggle}alt="hidePassword" onClick={togglePassword}/>}
+
                         <div className={styles.error}>{errors.password}</div>
                         <Link to="/" style={{textDecoration: "none"}}>
                             <input type="submit" className={styles.submit} onClick={submitHandler}/>
