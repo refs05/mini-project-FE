@@ -159,6 +159,7 @@
 .contentComm {
     margin-bottom: 10px;
     display: flex;
+    position: relative;
     /* justify-content: space-between; */
 }
 
@@ -179,6 +180,8 @@
     justify-content: space-between;
     width: 130px;
     margin-left: 600px;
+    position: absolute;
+    right: 0;
 }
 
 .editDel {
@@ -208,6 +211,8 @@
     color: white;
     font-size: 17px;
     margin-left: 24px;
+    position: absolute;
+    right: 0;
 }
 
 .send {
